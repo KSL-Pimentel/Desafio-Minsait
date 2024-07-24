@@ -1,0 +1,26 @@
+#O arquivo init-script.sh já esta criando este pedaço, decidi deixar aqui também para facilitar a vizualização
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: GAud4mZby8F3SD6P
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_PASSWORD: GAud4mZby8F3SD6P
+    ports:
+      - "80:80"
+    volumes:
+      - wordpress_data:/var/www/html
+
+volumes:
+  db_data:
+  wordpress_data:
